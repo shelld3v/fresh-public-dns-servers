@@ -83,7 +83,14 @@ def publicdnsserver_com():
 
 
 def dnscrypt():
-    return [x['addrs'][-1] for x in json.loads(get('https://download.dnscrypt.info/dnscrypt-resolvers/json/public-resolvers.json'))]
+    resolvers = []
+    for x in json.loads(get('https://download.dnscrypt.info/dnscrypt-resolvers/json/public-resolvers.json')):
+        for server in x['addrs']:
+            if not any(c.isalpha() for c in server):
+                resolvers.append(server)
+                break
+
+    return resolvers
 
 
 if __name__ == '__main__':
