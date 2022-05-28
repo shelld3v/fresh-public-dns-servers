@@ -94,7 +94,7 @@ def dnscrypt():
 
 
 if __name__ == '__main__':
-    resolvers = set(filter(
+    resolvers = set(filter(None,
         ipv4_public_dns_info() +
         ipv6_public_dns_info() +
         opennic_project() +
@@ -103,5 +103,5 @@ if __name__ == '__main__':
         publicdnsserver_com() +
         dnscrypt()
     ))
-    with open('tmp.txt', 'w') as f:
+    with open('nameservers.txt', 'w') as f:
         f.write('\n'.join(resolvers))
