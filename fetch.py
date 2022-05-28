@@ -46,7 +46,7 @@ def publicdns_xyz():
     resolvers = scrape_ipv4_addresses(get('https://www.publicdns.xyz/'))
     all_cc = (
         'us', 'ru', 'id', 'jp', 'de', 'gb', 'fr', 'sg', 'pl', 'ph', 'kr',
-        'tw', 'ca', 'br', 'in', 'se', 'th', 'hk', 'it'
+        'tw', 'ca', 'br', 'in', 'se', 'th', 'hk', 'it', 'ua'
     )
 
     for cc in all_cc:
@@ -63,9 +63,10 @@ def publicdns_xyz():
 def publicdnsserver_com():
     resolvers = []
     countries = (
-        'china', 'denmark', 'germany', 'japan', 'poland', 'belgium', 'hongkong',
+        'china', 'denmark', 'germany', 'japan', 'poland', 'austria', 'hongkong',
         'italy', 'netherlands', 'singapore', 'switzerland', 'unitedstates',
-        'canada', 'france', 'russia', 'southkorea', 'australia'
+        'canada', 'france', 'russia', 'southkorea', 'australia', 'taiwan',
+        'spain', 'unitedkingdom', 'sweden'
     )
 
     for country in countries:
