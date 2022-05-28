@@ -1,6 +1,7 @@
 import re
 import requests
 import time
+import json
 
 from bs4 import BeautifulSoup
 
@@ -81,6 +82,10 @@ def publicdnsserver_com():
     return resolvers
 
 
+def dnscrypt():
+    return [x['addrs'][-1] for x in json.loads(get('https://download.dnscrypt.info/dnscrypt-resolvers/json/public-resolvers.json'))]
+
+
 if __name__ == '__main__':
     resolvers = set(filter(
         ipv4_public_dns_info() +
@@ -88,7 +93,9 @@ if __name__ == '__main__':
         opennic_project() +
         ipfire() +
         publicdns_xyz() +
-        publicdnsserver_com()
+        publicdnsserver_com() +
+        dnscrypt() +
+        
     ))
     with open('tmp.txt', 'w') as f:
         f.write('\n'.join(resolvers))
