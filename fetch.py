@@ -94,8 +94,7 @@ if __name__ == '__main__':
         ipfire() +
         publicdns_xyz() +
         publicdnsserver_com() +
-        dnscrypt() +
-        
+        dnscrypt()
     ))
     with open('tmp.txt', 'w') as f:
         f.write('\n'.join(resolvers))
