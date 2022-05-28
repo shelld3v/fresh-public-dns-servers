@@ -5,7 +5,7 @@ import json
 
 from bs4 import BeautifulSoup
 
-min_reliability = 80
+min_reliability = 75
 ipv4_regex = '\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}'
 ip_regex = '/^(?>(?>([a-f0-9]{1,4})(?>:(?1)){7}|(?!(?:.*[a-f0-9](?>:|$)){8,})((?1)(?>:(?1)){0,6})?::(?2)?)|(?>(?>(?1)(?>:(?1)){5}:|(?!(?:.*[a-f0-9]:){6,})(?3)?::(?>((?1)(?>:(?1)){0,4}):)?)?(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(?>\.(?4)){3}))$/iD'
 
@@ -19,7 +19,7 @@ def scrape_ipv4_addresses(text):
 
 
 def get(url):
-    time.sleep(2)
+    time.sleep(2.5)
     return requests.get(
         url, verify=False, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.61/63 Safari/537.36'}
     ).content.decode(errors='ignore')
@@ -67,7 +67,8 @@ def publicdnsserver_com():
         'china', 'denmark', 'germany', 'japan', 'poland', 'austria', 'hongkong',
         'italy', 'netherlands', 'singapore', 'switzerland', 'unitedstates',
         'canada', 'france', 'russia', 'southkorea', 'australia', 'taiwan',
-        'spain', 'unitedkingdom', 'sweden'
+        'spain', 'unitedkingdom', 'sweden', 'thailand', 'mexico', 'brazil',
+        'indonesia', 'india', 'paraguay', 'iran', 'cyprus', 'czechia'
     )
 
     for country in countries:
