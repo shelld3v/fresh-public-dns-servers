@@ -31,6 +31,11 @@ jobs:
           cd dnsvalidator
           python3 setup.py install
 
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install bs4
+
       - name: Generate new resolvers
         run: |
           python3 fetch.py
