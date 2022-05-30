@@ -38,8 +38,10 @@ jobs:
 
       - name: Generate new resolvers
         run: |
+          rm ~/resolvers.txt
+          curl "https://raw.githubusercontent.com/proabiral/Fresh-Resolvers/master/resolvers.ipv6" -o ~/resolvers.txt
           python3 fetch.py
-          dnsvalidator -tL nameservers.txt -threads 7 --silent >  ~/resolvers.txt
+          dnsvalidator -tL nameservers.txt -threads 7 --silent >> ~/resolvers.txt
           rm nameservers.txt
 
       - name: Set current date
