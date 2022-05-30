@@ -5,7 +5,7 @@ import json
 
 from bs4 import BeautifulSoup
 
-min_reliability = 75
+min_reliability = 70
 ipv4_regex = '\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}[.]\\d{1,3}'
 ip_regex = '/^(?>(?>([a-f0-9]{1,4})(?>:(?1)){7}|(?!(?:.*[a-f0-9](?>:|$)){8,})((?1)(?>:(?1)){0,6})?::(?2)?)|(?>(?>(?1)(?>:(?1)){5}:|(?!(?:.*[a-f0-9]:){6,})(?3)?::(?>((?1)(?>:(?1)){0,4}):)?)?(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(?>\.(?4)){3}))$/iD'
 
@@ -46,8 +46,8 @@ def ipfire():
 def publicdns_xyz():
     resolvers = scrape_ipv4_addresses(get('https://www.publicdns.xyz/'))
     all_cc = (
-        'us', 'ru', 'id', 'jp', 'de', 'gb', 'fr', 'sg', 'pl', 'ph', 'kr',
-        'tw', 'ca', 'br', 'in', 'se', 'th', 'hk', 'it', 'ua'
+        'us', 'ru', 'id', 'jp', 'de', 'gb', 'fr', 'sg', 'pl', 'ph',
+        'kr', 'tw', 'ca', 'br', 'in', 'se', 'th', 'hk', 'it', 'ua'
     )
 
     for cc in all_cc:
@@ -68,7 +68,8 @@ def publicdnsserver_com():
         'italy', 'netherlands', 'singapore', 'switzerland', 'unitedstates',
         'canada', 'france', 'russia', 'southkorea', 'australia', 'taiwan',
         'spain', 'unitedkingdom', 'sweden', 'thailand', 'mexico', 'brazil',
-        'indonesia', 'india', 'paraguay', 'iran', 'cyprus', 'czechia'
+        'indonesia', 'india', 'paraguay', 'iran', 'cyprus', 'czechia',
+        'portugal', 'argentina', 'bangladesh', 'chile', 'hungary', 
     )
 
     for country in countries:
@@ -88,6 +89,9 @@ def dnscrypt():
     for x in json.loads(get('https://download.dnscrypt.info/dnscrypt-resolvers/json/public-resolvers.json')):
         for server in x['addrs']:
             if not any(c.isalpha() for c in server):
+                if server.startswith('[']):
+                    server = [1:-1]
+
                 resolvers.append(server)
                 break
 
